@@ -1,5 +1,6 @@
 import { OAuth2Client } from "google-auth-library";
 import { type TokenPayload } from "google-auth-library";
+import { axiosApiInstance } from "~/functions/api/axios";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -25,8 +26,6 @@ export default defineEventHandler(async (event) => {
       const userProfilePicture = payload.picture;
       const userSessionExpiry = payload.exp;
 
-      console.log("here is user profile picture", userProfilePicture);
-
       // Use the user information as needed
       const userInfo = {
         userId,
@@ -37,6 +36,19 @@ export default defineEventHandler(async (event) => {
         userProfilePicture,
         userSessionExpiry,
       };
+
+      //save user info in db
+      const formData = new FormData();
+
+      formData.append("firstName", `${userGivenName} ${userFamilyName}`);
+      formData.append("address", process.env.DEFAULT_ADDRESS as string);
+
+      const response = await axiosApiInstance("/users", {
+        method: "post",
+        data: formData,
+      });
+
+      console.log(response.data);
 
       return { userInfo };
     }

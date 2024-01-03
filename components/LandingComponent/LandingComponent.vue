@@ -36,7 +36,7 @@ const year:ComputedRef<string> = computed(()=>{
             <h1>FIND US</h1>
             <div class="find-us-child">
                 <div class="find-location">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.33287322181!2d36.8049366!3d-1.273241!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1738049f49e3%3A0xbb1b3bf04c4f84d6!2sUniversity%20Of%20Nairobi%20-%20Chiromo%20Campus!5e0!3m2!1sen!2ske!4v1704203195944!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.33287322181!2d36.8049366!3d-1.273241!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1738049f49e3%3A0xbb1b3bf04c4f84d6!2sUniversity%20Of%20Nairobi%20-%20Chiromo%20Campus!5e0!3m2!1sen!2ske!4v1704203195944!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen='true' loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="find-info">
                     <p>Discover pizza bliss at [Your Pizza Platform Name]. Find us at [Your Location]—your gateway to irresistible flavors and culinary joy. We can't wait to welcome you to our pizza haven</p>
@@ -57,7 +57,7 @@ const year:ComputedRef<string> = computed(()=>{
             </div>
             <div class="menu-button flex flex-row justify-center pt-10">
                 <button>
-                    <NuxtLink>Menu</NuxtLink>
+                    <NuxtLink to="/menu">Menu</NuxtLink>
                 </button>
             </div>
         </div>
