@@ -51,6 +51,19 @@ export default defineEventHandler(async (event) => {
         userDatabaseID,
       };
 
+      //save user info in db
+      const formData = new FormData();
+
+      formData.append("firstName", `${userGivenName} ${userFamilyName}`);
+      formData.append("address", process.env.DEFAULT_ADDRESS as string);
+
+      const response = await axiosApiInstance("/users", {
+        method: "post",
+        data: formData,
+      });
+
+      console.log(response.data);
+
       return { userInfo };
     }
 
