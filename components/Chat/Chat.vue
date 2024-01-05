@@ -1,5 +1,71 @@
 <script setup lang="ts">
+import {ref,onMounted} from 'vue'
+import type { pizzaInterface } from '~/server/api/orders/getPizza.get';
+import { useUserInfo } from '~/store/userStore/userStore';
+interface messageInterace{
+    sender:String
+    message:String
+    data?:pizzaInterface[]
+}
+interface lizzaInterface{
+    text:String
+}
 
+const userStore = useUserInfo()
+let userMessage:string = ""
+
+const messages:Ref<messageInterace[]> =ref([])
+
+async function sendMessage(){
+    const chatData:messageInterace = {
+        sender:'user',
+        message:userMessage
+    }
+
+    messages.value.push(chatData)
+
+    useFetch(`/api/lizza/chat/${userStore.getUserInfo.userDatabaseID}`,{
+        method:'POST',
+        body:{
+            message:userMessage
+        }
+    }).then((apiResponse)=>{
+        const chatDataResponse:messageInterace = {
+            sender:'lizza',
+            message:apiResponse.data.value.apiResponse.text,
+        }
+
+        const apiData = apiResponse.data.value.apiResponse.data;
+
+        if(apiData !==null){
+            if(Array.isArray(apiData)){
+                chatDataResponse.data = apiData
+            } else {
+                chatDataResponse.data = [apiData]
+            }
+        }
+        console.log(chatDataResponse)
+        messages.value.push(chatDataResponse)
+        console.log('here is front',apiResponse.data.value.apiResponse)
+    })
+
+    userMessage=""
+}
+
+onMounted(()=>{
+    if(messages.value.length===0){
+        (async()=>{
+            const {apiResponse} = await $fetch(`/api/lizza/chat/${userStore.getUserInfo.userDatabaseID}`)
+            
+            let chatData:messageInterace = {
+                sender:'lizza',
+                message : apiResponse.text
+            }
+
+            messages.value.push(chatData)
+        })()
+    }
+})
 </script>
 
 <template>
@@ -9,7 +75,20 @@
             <h2>LIZZA</h2>
         </div>
         <div class="chat-section">
-            <div class="liza">
+            <div class="scroll-chat" v-if="messages.length !== 0">
+                <div v-for="message in messages">
+                    <div :class="{ 'liza': message.sender === 'lizza', 'user': message.sender === 'user' }">
+                        <div>
+                            {{ message.message }}
+                        </div>
+                    </div>
+                    <div v-if="message.data">
+                        
+                        <ChatMenuComponent v-for="menuItem in message.data" :name="menuItem.name" :imageUrl="menuItem.imageUrl" :price="menuItem.price"/>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="liza">
                 <div>
                     <p>oe mse mi huwa na dem mwengine fiti wagwan mnhah hg fhfhfhgth hgfhfjbgfb hfhfhhfbb fgfhhhfgfgfbb</p>
                 </div>
@@ -18,11 +97,11 @@
                 <div>
                     <p>oe mse mi huwa na dem mwengine fiti wagwan mnhah hg fhfhfhgth hgfhfjbgfb hfhfhhfbb fgfhhhfgfgfbb</p>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="message-section">
-            <form>
-                <input required type="text" placeholder="type message">
+            <form @submit.prevent="sendMessage">
+                <input required v-model="userMessage" type="text" placeholder="type message">
                 <img src="~/assets/images/send.png"/>
             </form>
         </div>
@@ -58,13 +137,19 @@
         @apply justify-start
     }
     .liza div{
-        @apply max-w-[80%] bg-red-500 rounded-lg p-1 text-white bg-[#daa405] my-3
+        @apply max-w-[80%] bg-red-500 rounded-lg p-1 text-white bg-[#daa405] my-1
     }
     .user{
         @apply justify-end
     }
     .user div{
-        @apply max-w-[80%] bg-red-500 rounded-lg p-1 text-white bg-blue-500 my-3
+        @apply max-w-[80%] bg-red-500 rounded-lg p-1 text-white bg-blue-500 my-1
+    }
+    .chat-section{
+        @apply overflow-y-scroll h-[90%] pb-10
+    }
+    .message-section{
+        @apply bg-white
     }
     
 </style>

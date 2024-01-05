@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
     name:String
-    imageUrl:string
+    imageUrl:String
     price:String
 }>()
 </script>
@@ -23,7 +23,7 @@ defineProps<{
 
 <style scoped>
     .menu-item{
-        @apply flex flex-row justify-between w-[45%] my-6 p-2 mx-7;
+        @apply flex flex-row justify-between w-[65%] my-6 p-0 bg-[#cdcccc];
     }
     .menu-image{
         @apply w-[50%] mr-3;
