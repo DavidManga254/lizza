@@ -26,6 +26,7 @@ async function verifyUser(credential:string):Promise<void>{
       state.userGivenName = userInfo.userGivenName;
       state.userFamilyName = userInfo.userFamilyName;
       state.userProfilePicture = userInfo.userProfilePicture;
+      state.userDatabaseID = userInfo.userDatabaseID
 
       return state;
     })

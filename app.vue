@@ -1,5 +1,7 @@
 <template>
   <v-app>
-    <NuxtPage/>
+    <ChatBot>
+      <NuxtPage/>
+    </ChatBot>
   </v-app>
 </template>

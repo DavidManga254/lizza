@@ -9,6 +9,7 @@ export interface userInfoInterface {
   userGivenName: string | undefined;
   userFamilyName: string | undefined;
   userProfilePicture: string | undefined;
+  userDatabaseID: number | undefined;
 }
 
 export const useUserInfo = defineStore("userInfo", {
@@ -20,6 +21,7 @@ export const useUserInfo = defineStore("userInfo", {
       userGivenName: undefined,
       userFamilyName: undefined,
       userProfilePicture: undefined,
+      userDatabaseID: undefined,
     };
   },
   actions: {
@@ -37,6 +39,7 @@ export const useUserInfo = defineStore("userInfo", {
           state.userGivenName = userInfo.userGivenName;
           state.userFamilyName = userInfo.userFamilyName;
           state.userProfilePicture = userInfo.userProfilePicture;
+          state.userDatabaseID = userInfo.userDatabaseID;
 
           return state;
         });

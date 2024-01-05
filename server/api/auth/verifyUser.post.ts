@@ -26,17 +26,6 @@ export default defineEventHandler(async (event) => {
       const userProfilePicture = payload.picture;
       const userSessionExpiry = payload.exp;
 
-      // Use the user information as needed
-      const userInfo = {
-        userId,
-        userEmail,
-        userName,
-        userGivenName,
-        userFamilyName,
-        userProfilePicture,
-        userSessionExpiry,
-      };
-
       //save user info in db
       const formData = new FormData();
 
@@ -48,7 +37,19 @@ export default defineEventHandler(async (event) => {
         data: formData,
       });
 
-      console.log(response.data);
+      const userDatabaseID = response.data.id;
+
+      // Use the user information as needed
+      const userInfo = {
+        userId,
+        userEmail,
+        userName,
+        userGivenName,
+        userFamilyName,
+        userProfilePicture,
+        userSessionExpiry,
+        userDatabaseID,
+      };
 
       return { userInfo };
     }
