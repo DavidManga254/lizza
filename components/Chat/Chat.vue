@@ -36,6 +36,7 @@ async function sendMessage(){
         }
 
         const apiData = apiResponse.data.value.apiResponse.data;
+        console.log("here is apiData",apiData)
 
         if(apiData !==null){
             if(Array.isArray(apiData)){
@@ -43,10 +44,13 @@ async function sendMessage(){
             } else {
                 chatDataResponse.data = [apiData]
             }
+
+            if(apiData.hasOwnProperty('user')){
+                chatDataResponse.data = apiData
+            }
         }
-        console.log(chatDataResponse)
         messages.value.push(chatDataResponse)
-        console.log('here is front',apiResponse.data.value.apiResponse)
+        // console.log('here is front',apiResponse.data.value.apiResponse)
     })
 
     userMessage=""
@@ -66,6 +70,15 @@ onMounted(()=>{
         })()
     }
 })
+function calculateTotal(list:[]):number{
+    let total = 0;
+
+    list.forEach((element)=>{
+        total = total + element.price
+    })
+
+    return total
+}
 </script>
 
 <template>
@@ -82,22 +95,38 @@ onMounted(()=>{
                             {{ message.message }}
                         </div>
                     </div>
-                    <div v-if="message.data">
-                        
+                    <div v-if="Array.isArray(message.data)">
                         <ChatMenuComponent v-for="menuItem in message.data" :name="menuItem.name" :imageUrl="menuItem.imageUrl" :price="menuItem.price"/>
+                    </div>
+                    <div v-if="(typeof message.data === 'object')">
+                        <div class="receipt">
+                            <h1>LAPIZZA RESTAURANT</h1>
+                            <h1>2344, lOCHO STREET NAIROBI</h1>
+                            <h1>888-888-888</h1><br>
+
+                            <h1>SALE</h1>
+                            <div class="pizza-list" v-for="pizza in message.data.pizzas">
+                                <div>
+                                    {{ `${pizza.name.toUpperCase()} PIZZA` }}
+                                </div>
+                                <div>
+                                    {{`Ksh ${ pizza.price}` }}
+                                </div>
+                                 
+                            </div><br>
+                            <div class="pizza-list" v-for="pizza in message.data.pizzas">
+                                <div>
+                                    TOTAL
+                                </div>
+                                <div>
+                                    {{`Ksh ${calculateTotal(message.data.pizzas)}` }}
+                                </div>
+                                 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="liza">
-                <div>
-                    <p>oe mse mi huwa na dem mwengine fiti wagwan mnhah hg fhfhfhgth hgfhfjbgfb hfhfhhfbb fgfhhhfgfgfbb</p>
-                </div>
-            </div>
-            <div class="user">
-                <div>
-                    <p>oe mse mi huwa na dem mwengine fiti wagwan mnhah hg fhfhfhgth hgfhfjbgfb hfhfhhfbb fgfhhhfgfgfbb</p>
-                </div>
-            </div> -->
         </div>
         <div class="message-section">
             <form @submit.prevent="sendMessage">
@@ -150,6 +179,12 @@ onMounted(()=>{
     }
     .message-section{
         @apply bg-white
+    }
+    .receipt{
+        @apply max-w-[80%] bg-red-500 rounded-lg p-3 text-white bg-[#daa405] my-1
+    }
+    .pizza-list{ 
+        @apply flex flex-row justify-between w-full
     }
     
 </style>

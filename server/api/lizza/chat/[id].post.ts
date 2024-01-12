@@ -8,15 +8,18 @@ export default defineEventHandler(async (event) => {
     const formData = new FormData();
     formData.append("text", body.message);
 
+    console.log("here is user id", userId);
+
     // send user message
-    const response = await axiosApiInstance(`/chats/${userId}`, {
+    const response = await axiosApiInstance(`/chats/1`, {
       method: "post",
       data: formData,
     });
 
     const apiResponse = response.data;
 
-    console.log("here is apiresponse", apiResponse);
+    // console.log("here is apiresponse", apiResponse);
+    console.log("\u001b[" + 32 + "m" + "\u001b[0m", apiResponse);
     return { apiResponse };
   }
 });
