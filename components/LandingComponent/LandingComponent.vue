@@ -28,7 +28,7 @@ const year:ComputedRef<string> = computed(()=>{
         <div class="about">
             <div class="about-info">
                 <h2>ABOUT US</h2>
-                <p>Welcome to [Your Pizza Platform Name], where we blend passion and pizza into an unforgettable experience. Born from a shared love for the art of pizza-making, our platform is a celebration of exceptional taste and quality. Our team of culinary enthusiasts and pizza artisans is dedicated to crafting each pizza with care, using the finest, freshest ingredients. At [Your Platform Name], we believe in the power of a perfect pizza to bring people together and create lasting memories. Join us on this delicious journey, where every slice is a moment to savor and share.</p>
+                <p>Welcome to Lapizza, where we blend passion and pizza into an unforgettable experience. Born from a shared love for the art of pizza-making, our platform is a celebration of exceptional taste and quality. Our team of culinary enthusiasts and pizza artisans is dedicated to crafting each pizza with care, using the finest, freshest ingredients. At Lapizza, we believe in the power of a perfect pizza to bring people together and create lasting memories. Join us on this delicious journey, where every slice is a moment to savor and share.</p>
             </div>
             <img src="~assets/images/restaurant.png"/>
         </div>
@@ -39,7 +39,7 @@ const year:ComputedRef<string> = computed(()=>{
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.33287322181!2d36.8049366!3d-1.273241!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1738049f49e3%3A0xbb1b3bf04c4f84d6!2sUniversity%20Of%20Nairobi%20-%20Chiromo%20Campus!5e0!3m2!1sen!2ske!4v1704203195944!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen='true' loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="find-info">
-                    <p>Discover pizza bliss at [Your Pizza Platform Name]. Find us at [Your Location]—your gateway to irresistible flavors and culinary joy. We can't wait to welcome you to our pizza haven</p>
+                    <p>Discover pizza bliss at Lapizza. Find us at N2344, lOCHO STREET NAIROBI. We can't wait to welcome you to our pizza haven</p>
                     <h2>ATTENDANCE</h2>
                     <P>Monday to Sunday 12:00pm to 8:00pm</P>
                     <h2>DELIVERY</h2>
@@ -50,7 +50,7 @@ const year:ComputedRef<string> = computed(()=>{
         </div>
         <div class="our-menu">
             <h1>OUR MENU</h1>
-            <p>Indulge your senses with our diverse and delectable menu at [Your Pizza Platform Name]. From classic favorites to innovative creations, our carefully crafted selection caters to every palate. Dive into a world of flavor where each menu item is a culinary adventure waiting to be explored. Elevate your pizza experience with us, where variety meets excellence on every plate.</p>
+            <p>Indulge your senses with our diverse and delectable menu at Lapizza, our carefully crafted selection caters to every palate. Dive into a world of flavor where each menu item is a culinary adventure waiting to be explored. Elevate your pizza experience with us, where variety meets excellence on every plate.</p>
             <div>
                 <img src="~assets/images/worker.png"/>
                 <img src="~assets/images/dough.png"/>

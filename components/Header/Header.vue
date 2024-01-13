@@ -14,7 +14,7 @@ onMounted(()=>{
     //get stored userInfo
     const userInfo = userStore.getUserInfo
 
-    //if userInfo includes undefinded ID
+    //if userInfo includes undefined ID
     if(userInfo.userId !== undefined){
         loggedIn.value = true;
     }
@@ -33,7 +33,7 @@ onMounted(()=>{
 </script>
 <template>
     <div class="parent">
-        <div>LAPIZZA</div>
+        <div><a href="/">LAPIZZA</a></div>
         <div class="lg-view">
             <ul class="list">
                 <li class="listComponent">HOME</li>
