@@ -28,7 +28,7 @@ onMounted(()=>{
             </ul>
         </div>
         <div :v-if="menuList.length !== 0" class="menu-item">
-            <MenuItemComponent v-for="item in menuList" :name="item.name" :imageUrl="item.imageUrl" :price="item.price"/>
+            <MenuItemComponent v-for="item in menuList" :name="item.name" :imageUrl="item.imageUrl"  :price="item.price" :description="item.description"/>
         </div>
     </div>
 </template>

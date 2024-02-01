@@ -96,7 +96,7 @@ function calculateTotal(list:[]):number{
                         </div>
                     </div>
                     <div v-if="Array.isArray(message.data)">
-                        <ChatMenuComponent v-for="menuItem in message.data" :name="menuItem.name" :imageUrl="menuItem.imageUrl" :price="menuItem.price"/>
+                        <ChatMenuComponent v-for="menuItem in message.data" :name="menuItem.name" :imageUrl="menuItem.imageUrl" :price="menuItem.price" :description="menuItem.description"/>
                     </div>
                     <div v-if="(typeof message.data === 'object')">
                         <div class="receipt">

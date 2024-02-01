@@ -3,6 +3,7 @@ defineProps<{
     name:String
     imageUrl:String
     price:String
+    description:String
 }>()
 </script>
 
@@ -16,7 +17,7 @@ defineProps<{
                 <h2 class="menu-name">{{ name.toUpperCase() }}</h2>
                 <h2>Ksh{{ price }}</h2>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac placerat dui.</p>
+            <p>{{ description }}</p>
         </div>
     </div>
 </template>

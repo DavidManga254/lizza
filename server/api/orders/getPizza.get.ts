@@ -8,6 +8,7 @@ export interface pizzaInterface {
   imageUrl: String;
   price: number;
   quantity: number;
+  description: String;
 }
 export default defineEventHandler(async (event) => {
   try {
